@@ -1,24 +1,12 @@
-# README
+# postgresql + multitenant + api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+$ git clone git@github.com:adasbasi/postgresql-multitenant-api.git
+$ cd postgresql-multitenant-api
+$ bundle install
+$ rake db:setup
+$ rake db:seed
+$ rails s -p 3001
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+$ curl --referer http://ali.vcap.me:3001 http://api.vcap.me:3001/v1/projects
+```
