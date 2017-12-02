@@ -13,6 +13,7 @@ require "action_cable/engine"
 require "rails/test_unit/railtie"
 
 require "apartment/elevators/subdomain"
+require "domainatrix"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -21,8 +22,8 @@ module PostgresqlMultitenantApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.middleware.use Apartment::Elevators::Subdomain
-
+    #config.middleware.use Apartment::Elevators::Subdomain
+    config.middleware.use Apartment::Elevators::Generic, Proc.new { |request| Domainatrix.parse(request.referer).subdomain }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

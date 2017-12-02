@@ -3,12 +3,12 @@ module Api
   module V1
     class ProjectsController < ApplicationController
       def index
-        Apartment::Tenant.switch(Domainatrix.parse(request.referer).subdomain)
+       # Apartment::Tenant.switch(Domainatrix.parse(request.referer).subdomain)
         projects = Project.order('created_at DESC');
         render json: { status: 'SUCCESS', message: "Load Project", data:projects}, status: :ok
       end
       def show
-        Apartment::Tenant.switch(Domainatrix.parse(request.referer).subdomain)
+     #   Apartment::Tenant.switch(Domainatrix.parse(request.referer).subdomain)
         project = Project.find(params[:id])
         render json: { status: 'SUCCESS', message: "Load Project", data:project}, status: :ok
       end
